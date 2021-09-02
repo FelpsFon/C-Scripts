@@ -1,8 +1,11 @@
 #include <stdio.h>
 
+int idade;
+
 int main()
 {
-    printf("Hello World!");
+    printf("Insira sua idade aqui: ");
 
+    printf("Você tem %d anos", idade);
     return 0;
 }
