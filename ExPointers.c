@@ -11,7 +11,7 @@ int main()
     // b += 2;
     // *c = a+2;
 
-    // printf("a: %d b: %d c: %d *c: %d", a, b, c, *c);
+    // printf("a: %d b: %d", a, b);
 
     //Programa B:
     // a = 0; b = 3;
