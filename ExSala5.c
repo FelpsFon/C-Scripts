@@ -2,16 +2,16 @@
 
 int main()
 {
-    //Q2
+    // Q2
 
-    // int a = 5, b = 3;
-    // int *p1, *p2, *p3;
+    int a = 5, b = 3;
+    int *p1, *p2, *p3;
 
-    // p1 = NULL;
-    // p2 = &a;
-    // p3 = &b;
+    p1 = NULL;
+    p2 = &a;
+    p3 = &b;
 
-    // printf("valores de: p1 %d; p2 %d; p3 %d; Endereços de p1 %d; p2 %d; p3 %d;", p1, p2, p3, &p1, &p2, &p3);
+    printf("valores de: p1 %d; p2 %0p; p3 %0p; Endereços de p1 %0p; p2 %0p; p3 %0p;", p1, p2, p3, &p1, &p2, &p3);
 
     //Q3
 
@@ -32,19 +32,24 @@ int main()
 
     // while (i < 5)
     //  {
-    //     printf("notas[%d]: (endereço: %d, valor: %d)\n", i+1, (ptr + i), *(ptr + i));
-    //     media = media + (*(ptr+i)); printf("media: %d\n", media);
+    //     printf("notas[%d]: (endereço: %0p, valor: %d)\n", i+1, (ptr + i), *(ptr + i));
+    //     media = media + (*(ptr+i));
     //     i++;
     //  }
     //  media = media / i;
-    //  printf("MEDIA = %d", media);
+    //  printf("MEDIA = %d\n", media);
 
-    // if (media <= 3 && media < 5) printf("MI");
-    // else if (media >= 3 && media < 5) printf("MM");
+    // if (media >= 3 && media < 5) printf("MI");
+    // else if (media >= 5 && media < 7) printf("MM");
     // else if (media >= 7 && media < 9) printf("MS");
     // else if (media >= 9 && media <= 10) printf("SS");
 
 
-    // printf("notas[%d]: (endereço: %d, valor: %d)\n", &notas[3], (ptr + 3));
+    // printf("notas[%d]: (endereço: %p, valor: %d)\n", &notas[3], (ptr + 3));
+
+    // int a = 4, *c = &a;
+    // *c = *c + a;
+
+    // printf("a: %d", a);
     return 0;
 }
