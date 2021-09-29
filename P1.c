@@ -11,7 +11,7 @@ int main()
 
     int *resposta;
 
-    for (int i = 0; i <= 3; i++) //um algoritmo que percorra o vetor v
+    for (int i = 0; *(v + i) <= n; i++) //um algoritmo que percorra o vetor v
     {
         resposta = v;
         if (resposta > (v + i))
