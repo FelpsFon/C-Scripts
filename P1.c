@@ -7,14 +7,15 @@ int main()
     Em seguida, utilizando o ponteiro 'resposta', imprima na tela o endereço de memória encontrado e o seu valor. */
 
     int n = 3;
-    int v[n] = {1, 2, 3};
+    int v[n] = {2, 1, 3};
 
     int *resposta;
 
-    for (int i = 0; *(v + i) <= n; i++) //um algoritmo que percorra o vetor v
+    for (resposta = v; resposta < (v + n); resposta++) //um algoritmo que percorra o vetor v
     {
-        resposta = v;
-        if (resposta > (v + i))
+        int i = i++; printf("endereço: %0p | valor: %d\n", resposta, *resposta);
+        
+        if (*resposta > *(v + i))
         {
             resposta = (v + i); //armazene o endereço de memória do menor elemento do vetor v, no ponteiro 'resposta'.
         }
