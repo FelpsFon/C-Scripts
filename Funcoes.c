@@ -79,5 +79,48 @@ int main()
     // quant_tempo(5, 'h');
     // quant_tempo(3, 'm');
 
+    /*DESAFIO) Semelhante à função anterior, só que recebe mais um parâmetro indicando aquilo que se quer saber:
+    'h' - Horas, 'm' - Minutos e 's' - Segundos
+    --Resolva esse exercício de três forma distintas: com a instrução if-else, switch com break e switch sem break--*/
+    
+    long int numifelse(int n_horas, char tipo)
+    {
+         if (tipo == 'h') printf("%d horas\n", n_horas);
+        else if (tipo == 'm') printf("em %d hora(s), há %d minutos\n", n_horas, n_horas * 60);
+        else if (tipo == 's') printf("em %d hora(s), há %d segundos\n", n_horas, n_horas * 3600);
+
+        return 0;
+    }
+    
+    numifelse(1, 's');
+    numifelse(5, 'h');
+    numifelse(3, 'm');
+
+    // long int numswitchbreak(int n_horas, char tipo)
+    // {
+    //      if (tipo == 'h') printf("%d horas\n", n_horas);
+    //     else if (tipo == 'm') printf("em %d hora(s), há %d minutos\n", n_horas, n_horas * 60);
+    //     else if (tipo == 's') printf("em %d hora(s), há %d segundos\n", n_horas, n_horas * 3600);
+
+    //     return 0;
+    // }
+
+    // numswitchbreak(1, 's');
+    // numswitchbreak(5, 'h');
+    // numswitchbreak(3, 'm');
+
+    // long int numswitch(int n_horas, char tipo)
+    // {
+    //      if (tipo == 'h') printf("%d horas\n", n_horas);
+    //     else if (tipo == 'm') printf("em %d hora(s), há %d minutos\n", n_horas, n_horas * 60);
+    //     else if (tipo == 's') printf("em %d hora(s), há %d segundos\n", n_horas, n_horas * 3600);
+
+    //     return 0;
+    // }
+
+    // numswitch(1, 's');
+    // numswitch(5, 'h');
+    // numswitch(3, 'm');
+
     return 0;
 }
