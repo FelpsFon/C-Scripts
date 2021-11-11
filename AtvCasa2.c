@@ -4,27 +4,27 @@
 int soma(int n)
 {
     if (n == 1) return 1;
-    return n + soma(n-1);
+    return soma(n-1) + n;
 }
 
 int mult3(int n)
 {
     if (n <= 0) return 0;
     else if (n == 1) return 2;
-    return (n-1) + 2*n;
+    return mult3(n-1) + 3;    //ANTES: return (n-1) + 2*n;
 }
 
 int multn(int n)
 {
     if (n <= 0) return 0;
     else if (n == 1) return 3;
-    return 3 * pow(n, n-1);
+    return multn(n-1) * 2;    //ANTES: return 3 * pow(n, n-1);
 }
 
 int cumpr(int n)
 {
     if (n <= 1) return 0;
-    return (n-1) + n*n;
+    return cumpr(n-1) + (n-1);    //ANTES: return (n-1) + n*n;
 }
 
 int main()
