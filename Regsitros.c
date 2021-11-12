@@ -21,10 +21,10 @@ void ler_pessoa(t_pessoa *p)
     printf("Insira o nome da pessoa:");
     fgets(p->nome, 100, stdin);
 
-    printf("\nAgora sua idade: ");
+    printf("Agora sua idade: ");
     scanf("%d", &p->idade);
 
-    printf("\nE seu salario: ");
+    printf("E seu salario: ");
     scanf("%f", &p->salario);
 
     p->status = 1;
@@ -35,7 +35,8 @@ uma determinada pessoa.*/
 
 void mostrar_pessoa(t_pessoa *p)
 {
-    printf("Ler Pessoa:\nNome: %s\nIdade: %d\nSalario: %0f\nStatus: %d\n", ler_pessoa(p->nome), ler_pessoa(p), ler_pessoa(p), ler_pessoa(p));
+    printf("\nPessoa 1:\nNome: %sIdade: %d\nSalario: %.2f\nStatus: ", p->nome, p->idade, p->salario);
+    if (p->status == 1) printf("Ativo\n"); else printf("Inativo\n");
 }
 
 int main()
