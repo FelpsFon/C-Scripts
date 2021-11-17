@@ -54,12 +54,11 @@ iii) 3. Pesquisar por Status
 iv) 0. Voltar
 f) 6. Sair*/
 
-void appPessoas(t_pessoa *p) //Função para fazer o menu de interação
+void appPessoas(t_pessoa pessoas[]) //Função para fazer o menu de interação
 {
-    int input;
+    int posicao_vazia = 0, input;
 
-    while(input != 6)
-    {
+    do {
         system("cls");
 
         //Inserir Registro
@@ -86,77 +85,139 @@ void appPessoas(t_pessoa *p) //Função para fazer o menu de interação
         switch(input)
         {
             case 1:
-                system("cls");
-                inserir_registro();
+                inserir_registro(2, pessoas, &posicao_vazia);
                 break;
             case 2:
-                system("cls");
-                alterar_registro();
+                alterar_registro(pessoas, &posicao_vazia);
                 break;
             case 3:
-                system("cls");
-                apagar_registro();
+                apagar_registro(pessoas, &posicao_vazia);
                 break;
             case 4:
-                system("cls");
-                listar_registros();
+                listar_registros(pessoas, &posicao_vazia);
                 break;
             case 5:
+                menu_pesquisa(pessoas, &posicao_vazia);
+                break;
+            case 6:
                 system("cls");
-                pesquisas();
+                printf("Ate logo!");
                 break;
             default:
-                printf("Apenas números de 1 a 6, por favor!");
+                printf("Apenas numeros de 1 a 6, por favor!");
         }
+    } while(input != 6);
+}
+
+void inserir_registro(int n, t_pessoa pessoas[n], int *posicao_vazia) {
+  if(*posicao_vazia < n) {
+    ler_pessoa(&pessoas[*posicao_vazia]);
+    *posicao_vazia = *posicao_vazia + 1;
+  } else {
+    printf("Lista já está cheia!\n");
+  }
+  
+}
+
+void alterar_registro(t_pessoa pessoas[], int *posicao_vazia){
+	int num_registro;
+
+	if(*posicao_vazia <= 0) printf("Lista vazia!");
+	
+	else {
+		printf("Insira o registro a ser alterado, de 0 a %d: ", *posicao_vazia -1);
+		scanf("%d%*c", &num_registro);
+
+		if(num_registro >= *posicao_vazia || num_registro < 0) printf("Posição inválida!\n");
+		else ler_pessoa(&pessoas[num_registro]);
+	}
+}
+
+void apagar_registro(t_pessoa pessoas[], int *posicao_vazia) {
+  
+  int pos_deletar;
+  printf("Escolha qual pessoa da lista deseja apagar de 0 a %d: ", *posicao_vazia-1);
+  scanf("%d", &pos_deletar);
+  if(pos_deletar < *posicao_vazia) { // 
+    if(pos_deletar == *posicao_vazia -1) {
+      (*posicao_vazia)--;
+    } else {
+      for(int i = pos_deletar; i <= *posicao_vazia-2; i++) {
+        pessoas[i] = pessoas[i+1];
+      }
+      (*posicao_vazia)--;
     }
+  } else {
+    printf("Operação inválida!\n");
+  }
+	//[3] [7] [4] [5] [5] []
 }
 
-void inserir_registro(t_pessoa *p)
-{
-    printf("Aonde deseja inserir este registro? ");
-
-    printf("Insira o nome da pessoa:");
-    fgets(p->nome, 100, stdin);
-
-    printf("Agora sua idade: ");
-    scanf("%d", &p->idade);
-
-    printf("E seu salario: ");
-    scanf("%f", &p->salario);
-
-    printf("Qual o status atual desta pessoa? (0 - Inativa | 1 - Ativa) ");
-    scanf("%d", &p->status);
+void listar_registros(t_pessoa pessoas[], int *posicao_vazia) {
+  if(*posicao_vazia == 0) {
+    printf("Lista vazia!\n");
+  } else {
+    for(int i = 0; i < *posicao_vazia; i++) {
+      mostrar_pessoa(&pessoas[i]);
+    }
+  }
 }
 
-void alterar_registro()
-{
-
+void pesquisar_registros_entre_idades(t_pessoa pessoas[], int *posicao_vazia) {
+  int iMenor, iMaior;
+	printf("Insira a menor e a maior idade:\n");
+	scanf("%d %d", &iMenor, &iMaior);
+	
+	if(*posicao_vazia == 0) {
+    printf("Lista vazia!\n");
+  } else {
+    for(int i = 0; i < *posicao_vazia; i++) {
+      if (pessoas[i].idade >= iMenor && pessoas[i].idade <= iMaior) { mostrar_pessoa(&pessoas[i]); }
+    }
+  }
 }
 
-void apagar_registro()
+void menu_pesquisa(t_pessoa pessoas[], int *posicao_vazia)
 {
+    int input;
+    do {
+	    system("clear");
 
-}
+		printf("1. Pesquisar por intervalo de idades\n");
+		printf("2. Pesquisar por Nome\n");
+		printf("3. Pesquisar por Status\n");
+		printf("0. Voltar\n");
 
-void listar_registros()
-{
+		scanf("%d", &input);
 
-}
+		switch(input){
+			case 1:
+                pesquisar_registros_entre_idades(pessoas, &posicao_vazia);
+				break;
+			case 2:
 
-void pesquisas()
-{
+				break;
+			case 3:
 
+				break;
+			case 0:
+
+				break;
+			default:
+				printf("Opção Inválida");
+				break;
+			}
+	} while(input != 0);
 }
 
 int main() //MAIN final com todo o programa
 {
     // t_pessoa pessoa;
     t_pessoa pessoas[10];
-    int n = 2;
 
     // ler_pessoa(&pessoa);
     // mostrar_pessoa(&pessoa);
-    appPessoas(&pessoas[n]);
+    appPessoas(&pessoas);
     
     return 0;
 }
