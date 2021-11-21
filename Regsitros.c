@@ -28,16 +28,22 @@ void ler_pessoa(t_pessoa *p) //Procedimento para inserir os dados da pessoa
   printf("E seu salario: ");
   scanf("%f", &p->salario);
 
-  p->status = 1;
+  printf("Qual o status desta pessoa? (1 - Ativo | 0 - Inativo)\n");
+  scanf("%d", &p->status);
 }
 
-/*3. Implemente a função mostrar_pessoa(t_pessoa *p), que permite mostrar todos os dados relativos a
-uma determinada pessoa.*/
+/*3. Implemente a função mostrar_pessoa(t_pessoa *p), que permite mostrar todos os dados
+relativos a uma determinada pessoa.*/
 
 void mostrar_pessoa(t_pessoa *p) //Procedimento para imprimir os dados da pessoa
 {
-  printf("\nPessoa %d:\nNome: %sIdade: %d\nSalario: %.2f\nStatus: ", p->nome, p->idade, p->salario);
-  if (p->status == 1) printf("Ativo\n"); else printf("Inativo\n");
+  printf("\nNome: %sIdade: %d\nSalario: %.2f\nStatus: ",
+                      p->nome, p->idade, p->salario);
+
+  if (p->status == 1)
+    printf("1 - Ativo\n");
+  else
+    printf("0 - Inativo\n");
 }
 
 /*4. Considerando uma lista vazia de 10 registros de pessoas t_pessoa pessoas[10], implemente uma
@@ -54,6 +60,12 @@ iii) 3. Pesquisar por Status
 iv) 0. Voltar
 f) 6. Sair*/
 
+void EsperaTecla() //Espera o usuário apertar alguma tecla para continuar o programa
+{
+  printf("Aperte qualquer tecla para continuar...");
+  getchar();
+}
+
 void inserir_registro(int n, t_pessoa pessoas[n], int *posicao_vazia) //Inserir um novo registro
 {
   if(*posicao_vazia < n)
@@ -62,7 +74,7 @@ void inserir_registro(int n, t_pessoa pessoas[n], int *posicao_vazia) //Inserir 
     *posicao_vazia = *posicao_vazia + 1;
   }
   else
-    printf("Lista já está cheia!\n");
+    printf("A lista ja esta cheia!\n");
 }
 
 void alterar_registro(t_pessoa pessoas[], int *posicao_vazia) //Alterar algum registro
@@ -73,11 +85,11 @@ void alterar_registro(t_pessoa pessoas[], int *posicao_vazia) //Alterar algum re
     printf("Lista vazia!");
 	else
   {
-		printf("Insira o registro a ser alterado, de 0 a %d: ", *posicao_vazia -1);
+		printf("Insira o registro a ser alterado, de 0 a %d: ", (*posicao_vazia - 1) );
 		scanf("%d%*c", &num_registro);
 
 		if(num_registro >= *posicao_vazia || num_registro < 0)
-      printf("Posição inválida!\n");
+      printf("Posicao invalida!\n");
 		else
       ler_pessoa(&pessoas[num_registro]);
 	}
@@ -87,41 +99,34 @@ void apagar_registro(t_pessoa pessoas[], int *posicao_vazia)  //Apagar algum reg
 {
   int pos_deletar;
 
-  printf("Escolha qual pessoa da lista deseja apagar de 0 a %d: ", *posicao_vazia-1);
+  printf("Escolha qual pessoa da lista deseja apagar de 0 a %d: ", (*posicao_vazia - 1) );
   scanf("%d", &pos_deletar);
 
   if(pos_deletar < *posicao_vazia)
   {
-    if(pos_deletar == *posicao_vazia -1)
-    {
+    if(pos_deletar == (*posicao_vazia - 1) )
       (*posicao_vazia)--;
-    }
     else
     {
-      for(int i = pos_deletar; i <= *posicao_vazia-2; i++)
+      for(int i = pos_deletar; i <= (*posicao_vazia - 2); i++)
       {
         pessoas[i] = pessoas[i+1];
       }
       (*posicao_vazia)--;
     }
   }
-  else
-  {
-    printf("Operação inválida!\n");
-  } //[3] [7] [4] [5] [5] []
-}
+  else printf("Operacao invalida!\n");
+} //[3] [7] [4] [5] [5] []
 
 void listar_registros(t_pessoa pessoas[], int *posicao_vazia) //Listar os registros feitos
 {
   if(*posicao_vazia == 0)
-  {
     printf("Lista vazia!\n");
-  }
   else
-  {
     for(int i = 0; i < *posicao_vazia; i++)
+    {
       mostrar_pessoa(&pessoas[i]);
-  }
+    }
 }
 
 void pesquisar_registros_entre_idades(t_pessoa pessoas[], int *posicao_vazia) //Pesquisar de X a Y idade
@@ -151,42 +156,6 @@ void pesquisar_registros_nomes(t_pessoa pessoas[], int *posicao_vazia) //Pesquis
 void pesquisar_registros_status(t_pessoa pessoas[], int *posicao_vazia)  //Pesquisar por Status
 {
 
-}
-
-void menu_pesquisa(t_pessoa pessoas[], int *posicao_vazia)  //Função para fazer o menu de pesquisa
-{
-  int input;
-
-  do {
-	  system("cls");
-
-	  printf("1. Pesquisar por intervalo de idades\n");
-	  printf("2. Pesquisar por Nome\n");
-	  printf("3. Pesquisar por Status\n");
-	  printf("0. Voltar\n");
-
-	  scanf("%d%*c", &input);
-
-	  switch(input)
-    {
-		  case 1:
-        pesquisar_registros_entre_idades(pessoas, &posicao_vazia);
-			  break;
-		  case 2:
-        pesquisar_registros_nomes(pessoas, &posicao_vazia);
-        getchar();
-			  break;
-		  case 3:
-        pesquisar_registros_status(pessoas, &posicao_vazia);
-        getchar();
-			  break;
-		  case 0:
-			  break;
-		  default:
-			  printf("Opção Inválida");
-			  break;
-	  }
-	} while(input != 0);
 }
 
 int main() //MAIN final com todo o programa
@@ -226,23 +195,53 @@ int main() //MAIN final com todo o programa
     {
       case 1:
         inserir_registro(10, pessoas, &posicao_vazia);
-        getchar();
+        EsperaTecla();
         break;
       case 2:
         alterar_registro(pessoas, &posicao_vazia);
-        getchar();
+        EsperaTecla();
         break;
       case 3:
         apagar_registro(pessoas, &posicao_vazia);
-        getchar();
+        EsperaTecla();
         break;
       case 4:
         listar_registros(pessoas, &posicao_vazia);
-        getchar();
+        EsperaTecla();
         break;
       case 5:
-        menu_pesquisa(pessoas, &posicao_vazia);
-        getchar();
+        do {
+      	  system("cls");
+
+      	  printf("1. Pesquisar por intervalo de idades\n");
+      	  printf("2. Pesquisar por Nome\n");
+      	  printf("3. Pesquisar por Status\n");
+      	  printf("0. Voltar\n");
+
+      	  scanf("%d%*c", &input);
+
+      	  switch(input)
+          {
+      		  case 1:
+              pesquisar_registros_entre_idades(pessoas, &posicao_vazia);
+              EsperaTecla();
+      			  break;
+        		case 2:
+              pesquisar_registros_nomes(pessoas, &posicao_vazia);
+              EsperaTecla();
+      			  break;
+      		  case 3:
+              pesquisar_registros_status(pessoas, &posicao_vazia);
+              EsperaTecla();
+      			  break;
+      		  case 0:
+      			  break;
+      		  default:
+      			  printf("Opcao invalida!");
+              EsperaTecla();
+      			  break;
+      	  }
+	      } while(input != 0);
         break;
       case 6:
         system("cls");
@@ -250,6 +249,7 @@ int main() //MAIN final com todo o programa
         break;
       default:
         printf("Apenas numeros de 1 a 6, por favor!");
+        EsperaTecla();
     }
   } while(input != 6);
   return 0;
