@@ -171,7 +171,6 @@ void menu_pesquisa(t_pessoa pessoas[], int *posicao_vazia)  //Função para faze
     {
 		  case 1:
         pesquisar_registros_entre_idades(pessoas, &posicao_vazia);
-        getchar();
 			  break;
 		  case 2:
         pesquisar_registros_nomes(pessoas, &posicao_vazia);
