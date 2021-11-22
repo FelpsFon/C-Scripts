@@ -283,3 +283,5 @@ int main() //MAIN final com todo o programa
   } while(input != 6);
   return 0;
 }
+
+//Código por: Felipe Louzada Guedes Carneiro da Fontoura - Matrícula: 2112130011
