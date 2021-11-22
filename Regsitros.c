@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /*1. Defina em C um novo tipo denominado t_pessoa que contenha as seguintes características:
 • nome: String (tamanho 100),
@@ -150,12 +151,40 @@ void pesquisar_registros_entre_idades(t_pessoa pessoas[], int *posicao_vazia) //
 
 void pesquisar_registros_nomes(t_pessoa pessoas[], int *posicao_vazia) //Pesquisar por Nome
 {
+  char nomePesquisa[100];
 
+  printf("Insira o nome da pessoa que deseja procurar:\n");
+  gets(nomePesquisa);
+
+  if(*posicao_vazia == 0)
+    printf("Lista vazia!\n");
+  else
+  {
+    for(int i = 0; i < *posicao_vazia; i++)
+    {
+      if (strstr(pessoas[i].nome, nomePesquisa))
+        mostrar_pessoa(&pessoas[i]);
+    }
+  }
 }
 
 void pesquisar_registros_status(t_pessoa pessoas[], int *posicao_vazia)  //Pesquisar por Status
 {
+  int statusPesquisa;
 
+  printf("Insira qual stauts deseja procurar: ");
+  scanf("%d", &statusPesquisa);
+
+  if(*posicao_vazia == 0)
+  {
+    printf("Lista vazia!\n");
+  }
+  else
+  {
+    for(int i = 0; i < *posicao_vazia; i++)
+      if (pessoas[i].status == statusPesquisa)
+        mostrar_pessoa(&pessoas[i]);
+  }
 }
 
 int main() //MAIN final com todo o programa
@@ -224,7 +253,7 @@ int main() //MAIN final com todo o programa
           {
       		  case 1:
               pesquisar_registros_entre_idades(pessoas, &posicao_vazia);
-              EsperaTecla();
+              EsperaTecla(); getchar();
       			  break;
         		case 2:
               pesquisar_registros_nomes(pessoas, &posicao_vazia);
@@ -232,7 +261,7 @@ int main() //MAIN final com todo o programa
       			  break;
       		  case 3:
               pesquisar_registros_status(pessoas, &posicao_vazia);
-              EsperaTecla();
+              EsperaTecla(); getchar();
       			  break;
       		  case 0:
       			  break;
@@ -248,7 +277,7 @@ int main() //MAIN final com todo o programa
         printf("Ate logo!\n");
         break;
       default:
-        printf("Apenas numeros de 1 a 6, por favor!");
+        printf("Apenas numeros de 1 a 6, por favor!\n");
         EsperaTecla();
     }
   } while(input != 6);
