@@ -13,7 +13,7 @@ linha por linha, e imprima na tela apenas se as notas forem maior ou igual a 7.*
 
 void calcular_media_notas(int n, int notas[n])
 {
-  FILE *fp = fopen("./notas.txt", "r");
+  FILE *fp = fopen("C:\\Programação\\C\\C Scripts\\notas.txt", "r");
 
   if(fp != NULL)
   {
@@ -33,19 +33,19 @@ void calcular_media_notas(int n, int notas[n])
 /*(1 ponto) b) Realize a leitura dos valores do vetor de datas e imprima cada linha no arquivo
 "./datas.txt" os valores no seguinte formato: dd/mm/aaaa */
 
-ler_imprimir_datas()
-{
-    FILE *fp = fopen("./datas.txt", "w");
+// ler_imprimir_datas()
+// {
+//     FILE *fp = fopen("./datas.txt", "w");
 
-  if(fp != NULL) {
-    // operações de leitura e escrita
-    for(int i = 0; i < n; i++) {
-      fprintf(fp, "%d\\%d\\%d\n",
-          datas[i]->t_data.dia,datas[i]->t_data.mes,datas[i]->t_data.ano);
-    }
-    fclose(fp);
-  }
-}
+//   if(fp != NULL) {
+//     // operações de leitura e escrita
+//     for(int i = 0; i < n; i++) {
+//       fprintf(fp, "%d\\%d\\%d\n",
+//           datas[i]->t_data.dia,datas[i]->t_data.mes,datas[i]->t_data.ano);
+//     }
+//     fclose(fp);
+//   }
+// }
 
 int main()
 {
