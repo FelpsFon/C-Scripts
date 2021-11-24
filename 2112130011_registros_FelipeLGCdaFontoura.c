@@ -39,7 +39,7 @@ void ler_pet(t_pet *pet)
   printf("Insira o nome do pet: ");
   fgets(pet->nome, 100, stdin);
 
-  printf("Agora a sua raça: ");
+  printf("Agora a sua raca: ");
   fgets(pet->raca, 50, stdin);
 
   printf("Seu sexo (F ou M): ");
@@ -58,7 +58,7 @@ void imprimir_pets_f(int n, t_pet pets[n])
 {
   if(pets->sexo == 'F' || pets->sexo == 'f')
   {
-  printf("\nNome do pet: %sRaça: %sNome do(a) dono(a): %sIdade do(a) dono(a): %d\nSexo: ",
+  printf("\nNome do pet: %sRaca: %sNome do(a) dono(a): %sIdade do(a) dono(a): %d\nSexo: ",
             pets->nome,    pets->raca, pets->dono.nome,      pets->dono.idade);
 
   if (pets->sexo == 'M' || pets->sexo == 'm')
