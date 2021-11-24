@@ -2,6 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef struct {
+  int dia, mes, ano;
+} t_data;
+
 /*Considere o seguinte projeto do replit: https://replit.com/@DanielSouza7/BurlywoodCoralScientificcomputing#main.c
 
 (1 ponto) a) Implemente a função calcular_media_notas() que realiza a média das notas,
@@ -15,10 +19,9 @@ void calcular_media_notas(int n, int notas[n])
   {
     for(int i = 0; i < n; i++)
     {
-      for(int j = 0; notas[j] != '\n'; j++)
+      for (int j = 0; scanf("%d %d %d %d", notas[j]) != '\n'; j++;)
       {
-        scanf("%d%d%d%d", notas[j]);
-        media + notas[i];
+        media + notas[j];
       }
       if((media / n)) >= 7)
         printf("Notas maiores que 7:\n%d", media / n);
@@ -46,7 +49,11 @@ ler_imprimir_datas()
 
 int main()
 {
+  t_data datas[4];
+
+	int notas[4];
   
+	calcular_media_notas(4, notas);
   return 0;
 }
 
