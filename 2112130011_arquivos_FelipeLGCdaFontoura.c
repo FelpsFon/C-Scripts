@@ -39,7 +39,7 @@ void calcular_media_notas(int n, int notas[n])
 
 void ler_imprimir_datas(int n, t_data datas[n])
 {
-    FILE *fp = fopen("./datas.txt", "w");
+    FILE *fp = fopen(".\\datas.txt", "w");
 
   if(fp != NULL)
   {
