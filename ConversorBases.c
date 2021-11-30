@@ -8,13 +8,13 @@ Base 10: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9; (potências de 10) %f
 Base 16: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A(10), B(11), C(12), D(13), E(14), F(15); (1, 2, 4, 8) %x ou %X
 */
 
-float numero;
-char conversor[3];
+int numero;
+char conversor[4];
 
 int main()
 {
     printf("Insira um numero a ser convertido para outras bases: ");
-    scanf("%f%*c", &numero); //entrada do número a ser convertido
+    scanf("%d%*c", &numero); //entrada do número a ser convertido
 
     printf("Agora escolha a base para converte-lo (valores aceitaveis: bin, oct, dec, hex): ");
     gets(conversor); //entrada da escolha de conversor
@@ -25,21 +25,21 @@ int main()
     //     return 0;
     // }
 
-    if (strstr(conversor, "oct")) //conversor octonal
+    if (strstr(conversor, "oct")) //conversor octal
     {
-        printf("Seu número em forma octal é: %o", numero);
+        printf("Seu numero em forma octal e: %o", numero);
         return 0;
     }
 
     else if (strstr(conversor, "dec")) //conversor decimal
     {
-        printf("Seu número em decimal é: %f", numero);
+        printf("Seu numero em decimal e: %d", numero);
         return 0;
     }
 
     else if (strstr(conversor, "hex")) //conversor hexadecimal
     {
-        printf("Seu número em hexadecimal é: %X", numero);
+        printf("Seu numero em hexadecimal e: %X", numero);
         return 0;
     }
 
