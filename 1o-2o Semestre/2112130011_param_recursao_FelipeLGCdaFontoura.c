@@ -37,7 +37,6 @@ int soma4_recursivo(int n)
   else return 3; //CP
 }
 
-
 int main()
 {
   int media = 0, vetor[] = { 20, 40, 60 };
